@@ -1,24 +1,26 @@
 import java.util.*;
 public class AlgFCFS extends SchedulingAlgorithms{
 	
+	private static int jobsQuantity;
+	private Process[] jobsStack;
 	
 	private Process currentJob;	
 	
 	private Queue<Process> jobsQueue= new LinkedList<Process>();
-	int cpuTime;
 
 //
 	public AlgFCFS(Process[] jobsStack,int DISP){
 		super(jobsStack,DISP);
-		cpuTime=0;
-		for (int i=0;i<super.jobsQuantity;i++){
+		
+		this.jobsQuantity=jobsStack.length;
+		for (int i=0;i<jobsQuantity;i++){
 			jobsQueue.offer(jobsStack[i]);
 		}
 	}
 
 	//模拟运行FCFS算法
 	public void simulateRunning(){
-		System.out.println("in-"+DISP);
+
 		
 		do{
 

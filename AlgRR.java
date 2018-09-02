@@ -1,5 +1,5 @@
 import java.util.*;
-public class AlgFCFS extends SchedulingAlgorithms{
+public class AlgRR extends SchedulingAlgorithms{
 	
 	
 	private Process currentJob;	

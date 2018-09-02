@@ -126,7 +126,6 @@ public class C3214157A1{
 ////// FCFS ///////
 //////////////////////
 		AlgFCFS jobsOnFCFS= new AlgFCFS(jobsStackFCFS,DISP);
-		System.out.println("ot-"+DISP);
 		System.out.println("FCFS:");
 		jobsOnFCFS.simulateRunning();
 // FCFS:
