@@ -9,7 +9,6 @@ public class AlgFCFS extends SchedulingAlgorithms{
 //
 	public AlgFCFS(Process[] jobsStack,int DISP){
 		super(jobsStack,DISP);
-		cpuTime=0;
 	}
 
 	//模拟运行FCFS算法
