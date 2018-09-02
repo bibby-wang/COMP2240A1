@@ -1,20 +1,17 @@
 import java.util.*;
 public class AlgNRR extends SchedulingAlgorithms{
 	private Process currentJob;	
-	private static int timeQ = 4;	
-	
-	private Queue<Process> jobsQueue= new LinkedList<Process>();
-	private Queue<Process> serviceQueue= new LinkedList<Process>();
-	private int cpuTime;
+	private Queue<Process> readyQueue= new LinkedList<Process>();
+	private int decreaseTimeQ;
 
 //
 	public AlgNRR(Process[] jobsStack,int DISP){
 		super(jobsStack,DISP);
+	}
 
-		for (int i=0;i<super.jobsQuantity;i++){
-			jobsQueue.offer(jobsStack[i]);
-		}
-		cpuTime=jobsQueue.element().getArriveTime();		
+	public AlgNRR(Process[] jobsStack,int DISP,int decreaseTimeQ){
+		super(jobsStack,DISP);
+		this.decreaseTimeQ=decreaseTimeQ;
 	}
 
 	//模拟运行NRR算法
@@ -23,24 +20,34 @@ public class AlgNRR extends SchedulingAlgorithms{
 		do{
 			
 			while(!jobsQueue.isEmpty()){
-			
-				if (jobsQueue.element().getArriveTime()<=cpuTime+timeQ){
-					serviceQueue.offer(jobsQueue.poll());//inster to the service Queue
+				int arrTime=jobsQueue.element().getArriveTime();
+					int timeQ=0;
+					int tempTime=0;
+				if (!readyQueue.isEmpty()){
+					timeQ=readyQueue.element().getTimeQ();
+					tempTime=readyQueue.element().getSurplusTime();
+				}
+				//System.out.println("aS-"+arrTime+"-"+cpuTime+"-"+tempTime);
+				if (tempTime>timeQ){tempTime=timeQ;}
+				
+				if (arrTime<=cpuTime+tempTime){
+					
+					readyQueue.offer(jobsQueue.poll());//inster to the ready Queue
 				}else{
 					break;
 				}
 			}
 			
-			if (!serviceQueue.isEmpty()){
-				currentJob=serviceQueue.poll();//get the job from queue
+			if (!readyQueue.isEmpty()){
+				currentJob=readyQueue.poll();//get the job from queue
 				int jobID=currentJob.getID();
 				int jobArriveTime=currentJob.getArriveTime();
 				int jobExecSize=currentJob.getSurplusTime();
 				
 				cpuTime+=DISP;//add the dispatcher running time
-				if (jobExecSize<=timeQ || serviceQueue.isEmpty()){
+				if (jobExecSize<=currentJob.getTimeQ() || readyQueue.isEmpty()){
 					
-					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the service process
+					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
 					cpuTime+=jobExecSize;
 					currentJob.setTWTime(cpuTime);
 					
@@ -48,10 +55,11 @@ public class AlgNRR extends SchedulingAlgorithms{
 				}else{
 					
 					
-					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the service process
-					cpuTime+=timeQ;
-					currentJob.setSurplusTime(jobExecSize-timeQ);
-					serviceQueue.offer(currentJob);//inster to the end of service Queue
+					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+					cpuTime+=currentJob.getTimeQ();
+					currentJob.setSurplusTime(jobExecSize-currentJob.getTimeQ());
+					currentJob.shortTimeQ(decreaseTimeQ);
+					readyQueue.offer(currentJob);//inster to the end of ready Queue
 				}
 
 				
@@ -59,7 +67,7 @@ public class AlgNRR extends SchedulingAlgorithms{
 				cpuTime++;
 			}
 			
-		}while(!serviceQueue.isEmpty() || !jobsQueue.isEmpty());
+		}while(!readyQueue.isEmpty() || !jobsQueue.isEmpty());
 		
 	}
 

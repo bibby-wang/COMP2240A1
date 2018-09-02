@@ -137,7 +137,7 @@ public class C3214157A1{
 //////////////////////
 ////// RR /////
 //////////////////////
-		AlgRR jobsOnRR= new AlgRR(jobsStackRR,DISP);
+		AlgRR jobsOnRR= new AlgRR(jobsStackRR,DISP,0);
 		System.out.println("RR:");
 		jobsOnRR.simulateRunning();
 		System.out.println("");
@@ -153,7 +153,13 @@ public class C3214157A1{
 //////////////////////
 //////// NRR ////////
 //////////////////////
-
+		AlgNRR jobsOnNRR= new AlgNRR(jobsStackNRR,DISP,1);
+		System.out.println("NRR:");
+		jobsOnNRR.simulateRunning();
+		System.out.println("");
+		System.out.println("Process\t"+"Turnaround Time\t"+"Waiting Time");
+		
+		System.out.println(jobsOnNRR.getJobsInformation());
 
 
 		System.out.println("SUMMARY");
@@ -161,6 +167,7 @@ public class C3214157A1{
 		
 		System.out.println("FCFS\t"+jobsOnFCFS.getSummary());
 		System.out.println("RR\t"+jobsOnRR.getSummary());
+		System.out.println("NRR\t"+jobsOnNRR.getSummary());
 
 		
 	}

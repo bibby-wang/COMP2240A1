@@ -4,17 +4,12 @@ public class AlgFCFS extends SchedulingAlgorithms{
 	
 	private Process currentJob;	
 	
-	private Queue<Process> jobsQueue= new LinkedList<Process>();
-	int cpuTime;
+
 
 //
 	public AlgFCFS(Process[] jobsStack,int DISP){
 		super(jobsStack,DISP);
 		cpuTime=0;
-		for (int i=0;i<super.jobsQuantity;i++){
-			jobsQueue.offer(jobsStack[i]);
-		}
-		cpuTime=jobsQueue.element().getArriveTime();
 	}
 
 	//模拟运行FCFS算法

@@ -5,19 +5,22 @@ public class SchedulingAlgorithms{
 	public static int jobsQuantity;
 	public Process[] jobsStack;
 
-
+	public int cpuTime;
 	public float allJobsTurnaroundTime;
 	public float allJobsWaitingTime;	
 	public float averageTurnaroundTime;
 	public float averageWaitingTime;
-
+	public Queue<Process> jobsQueue= new LinkedList<Process>();
 //
 	public SchedulingAlgorithms(Process[] jobsStack,int DISP){
 		
 		this.jobsStack=jobsStack;		
 		this.DISP=DISP;
 		this.jobsQuantity=jobsStack.length;
-
+		for (int i=0;i<jobsQuantity;i++){
+			jobsQueue.offer(jobsStack[i]);
+		}
+		cpuTime=jobsQueue.element().getArriveTime();	
 	}
 
 

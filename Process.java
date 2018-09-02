@@ -4,8 +4,9 @@ public class Process{
 	private int	arriveTime;
 	private int	execSize;
 	private int	surplusTime;
-//	int	surplusSize;//Remaining time
+	private int	timeQ;
 
+	
 	private int turnaroundTime = 0;
 	private int waitingTime = 0;	
 
@@ -14,7 +15,7 @@ public class Process{
 		this.arriveTime=processArriveTime;
 		this.execSize=processExecSize;
 		this.surplusTime=processExecSize;
-		
+		this.timeQ=4;
 	
 	}
 	
@@ -24,7 +25,6 @@ public class Process{
 		waitingTime = turnaroundTime - execSize;
 		
 	}
-
 		
 	//get id 	
 	public int getID(){
@@ -55,6 +55,13 @@ public class Process{
 	public int getWaitingTime(){
 		return waitingTime;
 	}
-	
+	//get timeQ 	
+	public int getTimeQ(){
+		return timeQ;
+	}
+	//set timeQ 	
+	public void shortTimeQ(int q){
+		timeQ-=q;
+	}	
 	
 }
