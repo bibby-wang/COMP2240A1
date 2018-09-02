@@ -126,28 +126,25 @@ public class C3214157A1{
 ////// FCFS ///////
 //////////////////////
 		AlgFCFS jobsOnFCFS= new AlgFCFS(jobsStackFCFS,DISP);
-		System.out.println("ot-"+DISP);
 		System.out.println("FCFS:");
 		jobsOnFCFS.simulateRunning();
-// FCFS:
-// T1: p1
-// T12: p2
-// T14: p3
-// T17: p4
-// T19: p5
+		System.out.println("");		
 
-// Process Turnaround Time Waiting Time
-// p1      11              1
-// p2      11              10
-// p3      10              8
-// p4      8               7
-// p5      10              5
-
+		System.out.println("Process\t"+"Turnaround Time\t"+"Waiting Time");
+		
+		System.out.println(jobsOnFCFS.getJobsInformation());
+		
 //////////////////////
 ////// RR /////
 //////////////////////
-
-
+		AlgRR jobsOnRR= new AlgRR(jobsStackRR,DISP);
+		System.out.println("RR:");
+		jobsOnRR.simulateRunning();
+		System.out.println("");
+		System.out.println("Process\t"+"Turnaround Time\t"+"Waiting Time");
+		
+		System.out.println(jobsOnRR.getJobsInformation());
+		
 //////////////////////
 ////// FB ///////////
 //////////////////////
@@ -158,15 +155,12 @@ public class C3214157A1{
 //////////////////////
 
 
-		System.out.println("");
-		System.out.println("Process\t"+"Turnaround Time\t"+"Waiting Time");
-		
-		System.out.println(jobsOnFCFS.getJobsInformation());
-		
+
 		System.out.println("SUMMARY");
 		System.out.println("Algorithm"+"\t"+"Average Turnaround Time\t"+"Average Waiting Time");
 		
 		System.out.println("FCFS\t"+jobsOnFCFS.getSummary());
+		System.out.println("RR\t"+jobsOnRR.getSummary());
 
 		
 	}

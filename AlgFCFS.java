@@ -14,11 +14,11 @@ public class AlgFCFS extends SchedulingAlgorithms{
 		for (int i=0;i<super.jobsQuantity;i++){
 			jobsQueue.offer(jobsStack[i]);
 		}
+		cpuTime=jobsQueue.element().getArriveTime();
 	}
 
 	//模拟运行FCFS算法
 	public void simulateRunning(){
-		System.out.println("in-"+DISP);
 		
 		do{
 

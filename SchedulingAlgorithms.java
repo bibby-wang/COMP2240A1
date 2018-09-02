@@ -1,7 +1,7 @@
 
 import java.util.*;
 public class SchedulingAlgorithms{
-	public int DISP;
+	public static int DISP;
 	public static int jobsQuantity;
 	public Process[] jobsStack;
 

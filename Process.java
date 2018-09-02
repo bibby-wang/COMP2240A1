@@ -3,6 +3,7 @@ public class Process{
 	private int pID;
 	private int	arriveTime;
 	private int	execSize;
+	private int	surplusTime;
 //	int	surplusSize;//Remaining time
 
 	private int turnaroundTime = 0;
@@ -12,6 +13,7 @@ public class Process{
 		this.pID=processID;
 		this.arriveTime=processArriveTime;
 		this.execSize=processExecSize;
+		this.surplusTime=processExecSize;
 		
 	
 	}
@@ -36,6 +38,14 @@ public class Process{
 	//get Exec Size 	
 	public int getExecSize(){
 		return execSize;
+	}
+	//get Surplus Time 	
+	public int getSurplusTime(){
+		return surplusTime;
+	}
+	//set Surplus Time 	
+	public void setSurplusTime(int surplusTime){
+		this.surplusTime=surplusTime;
 	}
 	//get Turnaround Time 
 	public int getTurnaroundTime(){

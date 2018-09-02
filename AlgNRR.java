@@ -1,5 +1,5 @@
 import java.util.*;
-public class AlgRR extends SchedulingAlgorithms{
+public class AlgNRR extends SchedulingAlgorithms{
 	private Process currentJob;	
 	private static int timeQ = 4;	
 	
@@ -8,7 +8,7 @@ public class AlgRR extends SchedulingAlgorithms{
 	private int cpuTime;
 
 //
-	public AlgRR(Process[] jobsStack,int DISP){
+	public AlgNRR(Process[] jobsStack,int DISP){
 		super(jobsStack,DISP);
 
 		for (int i=0;i<super.jobsQuantity;i++){
@@ -17,7 +17,7 @@ public class AlgRR extends SchedulingAlgorithms{
 		cpuTime=jobsQueue.element().getArriveTime();		
 	}
 
-	//模拟运行RR算法
+	//模拟运行NRR算法
 	public void simulateRunning(){
 
 		do{
