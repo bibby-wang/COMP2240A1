@@ -11,7 +11,7 @@ public class SchedulingAlgorithms{
 	public float averageTurnaroundTime;
 	public float averageWaitingTime;
 	public Queue<Process> jobsQueue= new LinkedList<Process>();
-//
+	//Construction
 	public SchedulingAlgorithms(Process[] jobsStack,int DISP){
 		
 		this.jobsStack=jobsStack;		
@@ -31,8 +31,14 @@ public class SchedulingAlgorithms{
 		for (int i=0;i<jobsQuantity;i++){
 			
 
-			//System.out.println("p"+i+"\t"+jobsStack[i].getTurnaroundTime()+"\t"+jobsStack[i].getWaitingTime());
-			jobsInformation+="p"+jobsStack[i].getID()+"\t"+jobsStack[i].getTurnaroundTime()+"\t"+jobsStack[i].getWaitingTime()+"\r\n";
+			String strID="p"+jobsStack[i].getID();
+			strID=stringFormat(strID,8);
+			String strTT=" "+jobsStack[i].getTurnaroundTime();
+			strTT=stringFormat(strTT,16);
+			String strWT=" "+jobsStack[i].getWaitingTime();
+			
+			
+			jobsInformation+=strID+strTT+strWT+"\r\n";
 			allJobsTurnaroundTime+=jobsStack[i].getTurnaroundTime();
 			allJobsWaitingTime+=jobsStack[i].getWaitingTime();
 		}
@@ -49,23 +55,47 @@ public class SchedulingAlgorithms{
 		if (jobsQuantity!=0){
 			averageTurnaroundTime=allJobsTurnaroundTime/jobsQuantity;
 			averageWaitingTime=allJobsWaitingTime/jobsQuantity;
-			sumString+=String.format("%.2f",averageTurnaroundTime)+"\t"+String.format("%.2f",averageWaitingTime);
+			String aTT=String.format("%.2f",averageTurnaroundTime);
+			String aWT=String.format("%.2f",averageWaitingTime);
+			aTT=stringFormat(aTT,27);
+			sumString+=aTT+aWT;
 		}else{
 			sumString+="No Jos Count!";	
 		}
 		return sumString;
 	}
 	//format output String
-	public String stringFormat(String formatBreak,int length){
-        int aLength = formatBreak.length();
-        if(length>aLength){
-            int i = length-aLength;
-			formatBreak ="";
-            for (int j = 0; j < i; j++) {
-                formatBreak +=" ";
+	public String stringFormat(String formatStr,int length){
+
+		int l = length-formatStr.length();
+        if(l>0){
+			for (int i = 0; i < l; i++) {
+                formatStr +=" ";
             }
         }
-        return formatBreak;
-	}	
+		return formatStr;
+	}
+	//ouput Ti: pj in string
+	public String getTPString(int time,int processID){
+		String outputTP="T";
+		outputTP+=time+": p"+processID+"\r\n";
+		return outputTP;
+	}
+
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

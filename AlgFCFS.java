@@ -3,37 +3,37 @@ public class AlgFCFS extends SchedulingAlgorithms{
 	
 	
 	private Process currentJob;	
-	
+	private String outputString="";
 
 
-//
+	//Construction
 	public AlgFCFS(Process[] jobsStack,int DISP){
 		super(jobsStack,DISP);
 	}
 
-	//模拟运行FCFS算法
-	public void simulateRunning(){
+	//satar running algorithm
+	public String runningAlgorithm(){
 		
 		do{
 
-			currentJob=jobsQueue.poll();//get the job from queue
+			currentJob=jobsQueue.peek();//get the job from queue
 			int jobID=currentJob.getID();
 			int jobArriveTime=currentJob.getArriveTime();
 			int jobExecSize=currentJob.getExecSize();
 			if (jobArriveTime<=cpuTime){
+				jobsQueue.poll();
 				cpuTime+=DISP;//add the dispatcher running time
-				System.out.println("T"+cpuTime+": p"+jobID);//test
+				outputString+=getTPString(cpuTime,jobID);//output String Ti: pj
 				cpuTime+=jobExecSize;
 				currentJob.setTWTime(cpuTime);
 				
 	
 			}else{
-				jobsQueue.offer(currentJob);//
 				cpuTime++;
 			}
 
 		}while(!jobsQueue.isEmpty());
-		
+		return outputString;
 	}
 
 }

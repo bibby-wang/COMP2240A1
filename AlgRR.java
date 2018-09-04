@@ -5,18 +5,16 @@ public class AlgRR extends SchedulingAlgorithms{
 	private Queue<Process> readyQueue= new LinkedList<Process>();
 	private int decreaseTimeQ;
 
-//
-	public AlgRR(Process[] jobsStack,int DISP){
-		super(jobsStack,DISP);
-	}
 
+	//Construction
 	public AlgRR(Process[] jobsStack,int DISP,int decreaseTimeQ){
 		super(jobsStack,DISP);
 		this.decreaseTimeQ=decreaseTimeQ;
+
 	}
 
-	//模拟运行RR算法
-	public void simulateRunning(){
+	//satar running algorithm
+	public void runningAlgorithm(){
 
 		do{
 			
@@ -28,11 +26,10 @@ public class AlgRR extends SchedulingAlgorithms{
 					timeQ=readyQueue.element().getTimeQ();
 					tempTime=readyQueue.element().getSurplusTime();
 				}
-				//System.out.println("aS-"+arrTime+"-"+cpuTime+"-"+tempTime);
+				//get the arrival job 
 				if (tempTime>timeQ){tempTime=timeQ;}
-				
+
 				if (arrTime<=cpuTime+tempTime){
-					
 					readyQueue.offer(jobsQueue.poll());//inster to the ready Queue
 				}else{
 					break;
@@ -59,8 +56,8 @@ public class AlgRR extends SchedulingAlgorithms{
 					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
 					cpuTime+=currentJob.getTimeQ();
 					currentJob.setSurplusTime(jobExecSize-currentJob.getTimeQ());
-					currentJob.shortTimeQ(decreaseTimeQ);
-					currentJob.lowerPriority(1);
+					currentJob.shortTimeQ(decreaseTimeQ);//short Time Quantum
+
 					readyQueue.offer(currentJob);//inster to the end of ready Queue
 				}
 

@@ -5,7 +5,6 @@ public class Process{
 	private int	execSize;
 	private int	surplusTime;
 	private int	timeQ;
-	private int	Priority;
 
 	
 	private int turnaroundTime = 0;
@@ -17,7 +16,7 @@ public class Process{
 		this.execSize=processExecSize;
 		this.surplusTime=processExecSize;
 		this.timeQ=4;
-		this.Priority=0;
+		
 	
 	}
 	
@@ -65,12 +64,5 @@ public class Process{
 	public void shortTimeQ(int q){
 		if (timeQ>2)timeQ-=q;
 	}	
-	//get Priority 	
-	public int getPriority(){
-		return Priority;
-	}
-	//set lowerPriority 	
-	public void lowerPriority(int p){
-		if (Priority<5)Priority+=p;
-	}		
+
 }
