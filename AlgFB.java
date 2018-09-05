@@ -1,7 +1,6 @@
 import java.util.*;
 public class AlgFB extends SchedulingAlgorithms{
 	private Process currentJob;	
-	//private Queue<Process> readyQueue= new LinkedList<Process>();
 	private LinkedList<Queue<Process>> priorityQueue= new LinkedList<Queue<Process>>();
 
 	
@@ -27,13 +26,9 @@ public class AlgFB extends SchedulingAlgorithms{
 		for (int i=0; i<6;i++){
 			Queue<Process> readyQueue= new LinkedList<Process>();
 			priorityQueue.add(readyQueue);
-			//priorityQueue.get(i);
-			//priorityQueue.get(i).isEmpty();//空否
-			//priorityQueue.get(i).element();//查看队头
-			//priorityQueue.get(i).poll();//出队
-			//priorityQueue.get(i).offer();//入队
+
 		}
-		boolean signOfLoop = true;
+
 		
 		int priorityPoint=0;
 		do{
@@ -41,10 +36,20 @@ public class AlgFB extends SchedulingAlgorithms{
 			while(!jobsQueue.isEmpty()){
 				
 				int arrTime=jobsQueue.element().getArriveTime();
-				//chack arrvial time
-				if (arrTime<=cpuTime){
-					priorityQueue.get(priorityPoint).offer(jobsQueue.poll());//inster to the ready Queue
-					//readyQueue.offer(jobsQueue.poll());//inster to the ready Queue
+				int timeQ=0;
+				int tempTime=0;
+				if (!this.checkEmpty(priorityQueue)){
+					int queueNum=0;
+					while(priorityQueue.get(queueNum).isEmpty()){
+						queueNum++;
+					}
+					timeQ=priorityQueue.get(queueNum).element().getTimeQ()+DISP;
+					tempTime=priorityQueue.get(queueNum).element().getSurplusTime()+DISP;
+				}
+				//get the arrival job 
+				if (tempTime>timeQ){tempTime=timeQ;}
+				if (arrTime<=cpuTime+tempTime){
+					priorityQueue.get(0).offer(jobsQueue.poll());//inster to the ready Queue
 				}else{
 					break;
 				}
@@ -56,23 +61,22 @@ public class AlgFB extends SchedulingAlgorithms{
 				priorityPoint++;
 			}
 			
-			//System.out.println("Queue: "+priorityPoint);
+	
 			
 			
-			
-			
-			if (!this.checkEmpty(priorityQueue)){
-				currentJob=priorityQueue.get(priorityPoint).poll();//get the job from queue
+			if (priorityPoint<6 && !this.checkEmpty(priorityQueue)){
+				currentJob=priorityQueue.get(priorityPoint).poll();//get the job from priority Queue
 				int jobID=currentJob.getID();
 				int jobArriveTime=currentJob.getArriveTime();
 				int jobExecSize=currentJob.getSurplusTime();
+
+				cpuTime+=DISP;//add the dispatcher running time				
 				
-				cpuTime+=DISP;//add the dispatcher running time
-			//	if (jobExecSize<=currentJob.getTimeQ() || priorityQueue.get(priorityPoint).isEmpty()){
-			//	if (jobExecSize<=currentJob.getTimeQ() || this.checkEmpty(priorityQueue)){
-				if (jobExecSize<=currentJob.getTimeQ()){
+				
+				
+				if (jobExecSize<=currentJob.getTimeQ()||this.checkEmpty(priorityQueue)){
 					
-					//System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+
 					outputString+=getTPString(cpuTime,jobID);//output String Ti: pj
 					cpuTime+=jobExecSize;
 					currentJob.setTWTime(cpuTime);
@@ -81,17 +85,17 @@ public class AlgFB extends SchedulingAlgorithms{
 				}else{
 
 					
-					//System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
 					outputString+=getTPString(cpuTime,jobID);//output String Ti: pj
 					cpuTime+=currentJob.getTimeQ();
 					currentJob.setSurplusTime(jobExecSize-currentJob.getTimeQ());
 					currentJob.shortTimeQ(decreaseTimeQ);//short Time Quantum
-
-					priorityQueue.get(priorityPoint+1).offer(currentJob);//入队
-					//readyQueue.offer(currentJob);//inster to the end of ready Queue
+					if(priorityPoint<5){
+						priorityQueue.get(priorityPoint+1).offer(currentJob);//inster to next priority Queue
+					}else{
+						priorityQueue.get(5).offer(currentJob);//inster to end Queue
+					}
 				}
-
-				
+		
 			}else{
 				cpuTime++;
 			}

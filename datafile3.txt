@@ -58,19 +58,34 @@ Arrive: 14
 ExecSize: 5
 END
 
+ID: p15
+Arrive: 75
+ExecSize: 10
+END
+
 ID: p16
-Arrive: 100
-ExecSize: 13
+Arrive: 77
+ExecSize: 1
 END
 
 ID: p17
-Arrive: 100
-ExecSize: 13
+Arrive: 78
+ExecSize: 4
 END
 
 ID: p18
-Arrive: 100
+Arrive: 80
 ExecSize: 5
+END
+
+ID: p19
+Arrive: 95
+ExecSize: 5
+END
+
+ID: p20
+Arrive: 200
+ExecSize: 50
 END
 
 EOF

@@ -17,19 +17,19 @@ public class AlgRR extends SchedulingAlgorithms{
 	public String runningAlgorithm(){
 		String outputString="";
 		do{
-			
+			//check job arrival
 			while(!jobsQueue.isEmpty()){
 				int arrTime=jobsQueue.element().getArriveTime();
 				int timeQ=0;
 				int tempTime=0;
 				if (!readyQueue.isEmpty()){
-					timeQ=readyQueue.element().getTimeQ();
-					tempTime=readyQueue.element().getSurplusTime();
+					timeQ=readyQueue.element().getTimeQ()+DISP;
+					tempTime=readyQueue.element().getSurplusTime()+DISP;
 				}
 				//get the arrival job 
 				if (tempTime>timeQ){tempTime=timeQ;}
 				//System.out.println("[A]"+"c="+cpuTime+"t="+tempTime+" ["+jobsQueue.element().getID()+"]="+arrTime);
-				if (arrTime<=cpuTime+tempTime+DISP){
+				if (arrTime<=cpuTime+tempTime){
 					readyQueue.offer(jobsQueue.poll());//inster to the ready Queue
 				}else{
 					break;
@@ -37,7 +37,7 @@ public class AlgRR extends SchedulingAlgorithms{
 			}
 			
 			if (!readyQueue.isEmpty()){
-				currentJob=readyQueue.poll();//get the job from queue
+				currentJob=readyQueue.poll();//get the job from ready queue
 				int jobID=currentJob.getID();
 				int jobArriveTime=currentJob.getArriveTime();
 				int jobExecSize=currentJob.getSurplusTime();
@@ -60,7 +60,7 @@ public class AlgRR extends SchedulingAlgorithms{
 					currentJob.setSurplusTime(jobExecSize-currentJob.getTimeQ());
 					currentJob.shortTimeQ(decreaseTimeQ);//short Time Quantum
 					////////////
-					///////check 
+					//check job arrival
 					///////
 					readyQueue.offer(currentJob);//inster to the end of ready Queue
 				}

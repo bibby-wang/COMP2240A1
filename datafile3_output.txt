@@ -1,0 +1,198 @@
+FCFS:
+T1: p1
+T12: p2
+T14: p3
+T17: p4
+T19: p5
+T25: p10
+T31: p11
+T42: p12
+T44: p13
+T47: p14
+T49: p15
+T76: p15
+T87: p16
+T89: p17
+T94: p18
+T100: p19
+T201: p20
+
+
+Process Turnaround Time  Waiting Time
+p1       11              1
+p2       13              12
+p3       16              14
+p4       18              17
+p5       24              19
+p10      29              24
+p11      40              30
+p12      41              40
+p13      40              38
+p14      38              37
+p15      40              35
+p15      11              1
+p16      11              10
+p17      15              11
+p18      19              14
+p19      10              5
+p20      51              1
+
+RR:
+T1: p1
+T6: p2
+T8: p3
+T11: p4
+T13: p5
+T18: p10
+T23: p11
+T28: p12
+T30: p1
+T35: p13
+T38: p14
+T40: p15
+T45: p5
+T47: p10
+T49: p11
+T54: p1
+T57: p15
+T59: p11
+T76: p15
+T81: p16
+T83: p17
+T88: p18
+T93: p15
+T98: p18
+T100: p19
+T105: p15
+T108: p19
+T201: p20
+
+
+Process Turnaround Time  Waiting Time
+p1       56              46
+p2       7               6
+p3       10              8
+p4       12              11
+p5       46              41
+p10      47              42
+p11      60              50
+p12      27              26
+p13      31              29
+p14      29              28
+p15      44              39
+p15      32              22
+p16      5               4
+p17      9               5
+p18      19              14
+p19      14              9
+p20      51              1
+
+FB(constant):
+T1: p1
+T6: p2
+T8: p3
+T11: p4
+T13: p5
+T18: p10
+T23: p11
+T28: p12
+T30: p13
+T33: p14
+T35: p15
+T40: p1
+T45: p5
+T47: p10
+T49: p11
+T54: p15
+T56: p1
+T59: p11
+T76: p15
+T81: p16
+T83: p17
+T88: p18
+T93: p19
+T98: p15
+T103: p18
+T105: p19
+T107: p15
+T201: p20
+
+
+Process Turnaround Time  Waiting Time
+p1       58              48
+p2       7               6
+p3       10              8
+p4       12              11
+p5       46              41
+p10      47              42
+p11      60              50
+p12      27              26
+p13      26              24
+p14      24              23
+p15      41              36
+p15      34              24
+p16      5               4
+p17      9               5
+p18      24              19
+p19      11              6
+p20      51              1
+
+NRR:
+T1: p1
+T6: p2
+T8: p3
+T11: p4
+T13: p5
+T18: p10
+T23: p11
+T28: p12
+T30: p1
+T34: p13
+T37: p14
+T39: p15
+T44: p5
+T46: p10
+T48: p11
+T52: p1
+T55: p15
+T57: p11
+T60: p1
+T62: p11
+T76: p15
+T81: p16
+T83: p17
+T88: p18
+T93: p15
+T97: p18
+T99: p19
+T104: p15
+T107: p19
+T109: p15
+T201: p20
+
+
+Process Turnaround Time  Waiting Time
+p1       61              51
+p2       7               6
+p3       10              8
+p4       12              11
+p5       45              40
+p10      46              41
+p11      62              52
+p12      27              26
+p13      30              28
+p14      28              27
+p15      42              37
+p15      35              25
+p16      5               4
+p17      9               5
+p18      18              13
+p19      13              8
+p20      51              1
+
+SUMMARY
+Algorithm     Average Turnaround Time   Average Waiting Time
+FCFS          25.12                      18.18
+RR            29.35                      22.41
+FB(constant)  28.94                      22.00
+NRR           29.47                      22.53
