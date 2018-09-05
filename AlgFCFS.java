@@ -3,7 +3,7 @@ public class AlgFCFS extends SchedulingAlgorithms{
 	
 	
 	private Process currentJob;	
-	private String outputString="";
+
 
 
 	//Construction
@@ -13,7 +13,7 @@ public class AlgFCFS extends SchedulingAlgorithms{
 
 	//satar running algorithm
 	public String runningAlgorithm(){
-		
+		String outputString="";
 		do{
 
 			currentJob=jobsQueue.peek();//get the job from queue

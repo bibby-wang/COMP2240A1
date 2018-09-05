@@ -22,7 +22,8 @@ public class AlgFB extends SchedulingAlgorithms{
 		return val;
 	}
 	//satar running algorithm
-	public void runningAlgorithm(){
+	public String runningAlgorithm(){
+		String outputString="";
 		for (int i=0; i<6;i++){
 			Queue<Process> readyQueue= new LinkedList<Process>();
 			priorityQueue.add(readyQueue);
@@ -51,7 +52,7 @@ public class AlgFB extends SchedulingAlgorithms{
 
 			
 			//check all priority Queues get the high priorityQueue that has process to do
-			while(priorityQueue.get(priorityPoint).isEmpty()&&priorityPoint<6){
+			while(priorityPoint<6 && priorityQueue.get(priorityPoint).isEmpty()){
 				priorityPoint++;
 			}
 			
@@ -71,7 +72,8 @@ public class AlgFB extends SchedulingAlgorithms{
 			//	if (jobExecSize<=currentJob.getTimeQ() || this.checkEmpty(priorityQueue)){
 				if (jobExecSize<=currentJob.getTimeQ()){
 					
-					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+					//System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+					outputString+=getTPString(cpuTime,jobID);//output String Ti: pj
 					cpuTime+=jobExecSize;
 					currentJob.setTWTime(cpuTime);
 					
@@ -79,7 +81,8 @@ public class AlgFB extends SchedulingAlgorithms{
 				}else{
 
 					
-					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+					//System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+					outputString+=getTPString(cpuTime,jobID);//output String Ti: pj
 					cpuTime+=currentJob.getTimeQ();
 					currentJob.setSurplusTime(jobExecSize-currentJob.getTimeQ());
 					currentJob.shortTimeQ(decreaseTimeQ);//short Time Quantum
@@ -96,7 +99,7 @@ public class AlgFB extends SchedulingAlgorithms{
 
 			
 		}while(!this.checkEmpty(priorityQueue) || !jobsQueue.isEmpty());
-		
+		return outputString;
 	}
 
 

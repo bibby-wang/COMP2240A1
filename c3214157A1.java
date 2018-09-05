@@ -143,7 +143,7 @@ public class C3214157A1{
 		//////////////////////
 		AlgRR jobsOnRR= new AlgRR(jobsStackRR,DISP,0);
 		System.out.println("RR:");
-		jobsOnRR.runningAlgorithm();
+		System.out.println(jobsOnRR.runningAlgorithm());
 		System.out.println("");
 		System.out.println("Process Turnaround Time  Waiting Time");
 		System.out.println(jobsOnRR.getJobsInformation());
@@ -153,7 +153,7 @@ public class C3214157A1{
 		//////////////////////
 		AlgFB jobsOnFB= new AlgFB(jobsStackFB,DISP,0);
 		System.out.println("FB(constant):");
-		jobsOnFB.runningAlgorithm();
+		System.out.println(jobsOnFB.runningAlgorithm());
 		System.out.println("");
 		System.out.println("Process Turnaround Time  Waiting Time");
 		System.out.println(jobsOnFB.getJobsInformation());
@@ -161,9 +161,9 @@ public class C3214157A1{
 		//////////////////////
 		//output NRR
 		//////////////////////
-		AlgRR jobsOnNRR= new AlgRR(jobsStackNRR,DISP,1);
+		AlgNRR jobsOnNRR= new AlgNRR(jobsStackNRR,DISP,1);
 		System.out.println("NRR:");
-		jobsOnNRR.runningAlgorithm();
+		System.out.println(jobsOnNRR.runningAlgorithm());
 		System.out.println("");
 		System.out.println("Process Turnaround Time  Waiting Time");
 		System.out.println(jobsOnNRR.getJobsInformation());
@@ -173,11 +173,11 @@ public class C3214157A1{
 		//////////////////////
 
 		System.out.println("SUMMARY");
-		System.out.println("Algorithm    Average Turnaround Time   Average Waiting Time");
-		System.out.println("FCFS         "+jobsOnFCFS.getSummary());
-		System.out.println("RR           "+jobsOnRR.getSummary());
-		System.out.println("FB(constant) "+jobsOnFB.getSummary());
-		System.out.println("NRR          "+jobsOnNRR.getSummary());
+		System.out.println("Algorithm     Average Turnaround Time   Average Waiting Time");
+		System.out.println("FCFS          "+jobsOnFCFS.getSummary());
+		System.out.println("RR            "+jobsOnRR.getSummary());
+		System.out.println("FB(constant)  "+jobsOnFB.getSummary());
+		System.out.println("NRR           "+jobsOnNRR.getSummary());
 
 		
 	}

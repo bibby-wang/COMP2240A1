@@ -14,8 +14,8 @@ public class AlgRR extends SchedulingAlgorithms{
 	}
 
 	//satar running algorithm
-	public void runningAlgorithm(){
-
+	public String runningAlgorithm(){
+		String outputString="";
 		do{
 			
 			while(!jobsQueue.isEmpty()){
@@ -28,7 +28,7 @@ public class AlgRR extends SchedulingAlgorithms{
 				}
 				//get the arrival job 
 				if (tempTime>timeQ){tempTime=timeQ;}
-
+				System.out.println("c="+cpuTime+"t="+tempTime+"a="+arrTime);
 				if (arrTime<=cpuTime+tempTime){
 					readyQueue.offer(jobsQueue.poll());//inster to the ready Queue
 				}else{
@@ -46,6 +46,7 @@ public class AlgRR extends SchedulingAlgorithms{
 				if (jobExecSize<=currentJob.getTimeQ() || readyQueue.isEmpty()){
 					
 					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+					outputString+=getTPString(cpuTime,jobID);//output String Ti: pj
 					cpuTime+=jobExecSize;
 					currentJob.setTWTime(cpuTime);
 					
@@ -54,10 +55,13 @@ public class AlgRR extends SchedulingAlgorithms{
 					
 					
 					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+					outputString+=getTPString(cpuTime,jobID);//output String Ti: pj
 					cpuTime+=currentJob.getTimeQ();
 					currentJob.setSurplusTime(jobExecSize-currentJob.getTimeQ());
 					currentJob.shortTimeQ(decreaseTimeQ);//short Time Quantum
-
+					////////////
+					///////check 
+					///////
 					readyQueue.offer(currentJob);//inster to the end of ready Queue
 				}
 
@@ -67,7 +71,7 @@ public class AlgRR extends SchedulingAlgorithms{
 			}
 			
 		}while(!readyQueue.isEmpty() || !jobsQueue.isEmpty());
-		
+		return outputString;
 	}
 
 }
