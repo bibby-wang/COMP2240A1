@@ -28,8 +28,8 @@ public class AlgRR extends SchedulingAlgorithms{
 				}
 				//get the arrival job 
 				if (tempTime>timeQ){tempTime=timeQ;}
-				System.out.println("c="+cpuTime+"t="+tempTime+"a="+arrTime);
-				if (arrTime<=cpuTime+tempTime){
+				//System.out.println("[A]"+"c="+cpuTime+"t="+tempTime+" ["+jobsQueue.element().getID()+"]="+arrTime);
+				if (arrTime<=cpuTime+tempTime+DISP){
 					readyQueue.offer(jobsQueue.poll());//inster to the ready Queue
 				}else{
 					break;
@@ -45,7 +45,7 @@ public class AlgRR extends SchedulingAlgorithms{
 				cpuTime+=DISP;//add the dispatcher running time
 				if (jobExecSize<=currentJob.getTimeQ() || readyQueue.isEmpty()){
 					
-					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+					//System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
 					outputString+=getTPString(cpuTime,jobID);//output String Ti: pj
 					cpuTime+=jobExecSize;
 					currentJob.setTWTime(cpuTime);
@@ -54,7 +54,7 @@ public class AlgRR extends SchedulingAlgorithms{
 				}else{
 					
 					
-					System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
+					//System.out.println("T"+cpuTime+": p"+jobID);//print the cpu time and the ready process
 					outputString+=getTPString(cpuTime,jobID);//output String Ti: pj
 					cpuTime+=currentJob.getTimeQ();
 					currentJob.setSurplusTime(jobExecSize-currentJob.getTimeQ());
