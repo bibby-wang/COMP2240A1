@@ -1,17 +1,10 @@
-// - University of Newcastle
-// - School of Electrical Engineering and Computer Science
-// - COMP2240 Operating Systems
-// - Assignment 1
-// - Scheduling Algorithms
-// - Feedback 
-// - time quantum of 4ms and a 6 level priority
-// - Name: Binbin Wang
-// - Student No: 3214157
-// - Date: 05-09-2018
 import java.util.*;
 public class AlgFB extends SchedulingAlgorithms{
 	private Process currentJob;	
 	private LinkedList<Queue<Process>> priorityQueue= new LinkedList<Queue<Process>>();
+
+	
+	
 	private int decreaseTimeQ;
 	//Construction
 	public AlgFB(Process[] jobsStack,int DISP,int decreaseTimeQ){
@@ -19,7 +12,6 @@ public class AlgFB extends SchedulingAlgorithms{
 		this.decreaseTimeQ=decreaseTimeQ;
 
 	}
-	//check the queue list is empty or not
 	private boolean checkEmpty(LinkedList<Queue<Process>> Queue){
 		boolean val=true;
 
@@ -30,7 +22,6 @@ public class AlgFB extends SchedulingAlgorithms{
 	}
 	//satar running algorithm
 	public String runningAlgorithm(){
-		
 		String outputString="";
 		for (int i=0; i<6;i++){
 			Queue<Process> readyQueue= new LinkedList<Process>();
@@ -52,8 +43,8 @@ public class AlgFB extends SchedulingAlgorithms{
 					while(priorityQueue.get(queueNum).isEmpty()){
 						queueNum++;
 					}
-					timeQ=priorityQueue.get(queueNum).element().getTimeQ()+DISP;//
-					tempTime=priorityQueue.get(queueNum).element().getSurplusTime()+DISP;//
+					timeQ=priorityQueue.get(queueNum).element().getTimeQ()+DISP;
+					tempTime=priorityQueue.get(queueNum).element().getSurplusTime()+DISP;
 				}
 				//get the arrival job 
 				if (tempTime>timeQ){tempTime=timeQ;}
@@ -82,7 +73,7 @@ public class AlgFB extends SchedulingAlgorithms{
 				cpuTime+=DISP;//add the dispatcher running time				
 				
 				
-				//if no more jobs in priority Queue or job will finish this time
+				
 				if (jobExecSize<=currentJob.getTimeQ()||this.checkEmpty(priorityQueue)){
 					
 
@@ -98,12 +89,10 @@ public class AlgFB extends SchedulingAlgorithms{
 					cpuTime+=currentJob.getTimeQ();
 					currentJob.setSurplusTime(jobExecSize-currentJob.getTimeQ());
 					currentJob.shortTimeQ(decreaseTimeQ);//short Time Quantum
-					
-					//chack is the lower priority Queue
 					if(priorityPoint<5){
 						priorityQueue.get(priorityPoint+1).offer(currentJob);//inster to next priority Queue
 					}else{
-						priorityQueue.get(5).offer(currentJob);//inster to lower priority Queue
+						priorityQueue.get(5).offer(currentJob);//inster to end Queue
 					}
 				}
 		

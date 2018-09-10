@@ -1,19 +1,11 @@
-// - University of Newcastle
-// - School of Electrical Engineering and Computer Science
-// - COMP2240 Operating Systems
-// - Assignment 1
-// - Scheduling Algorithms 
-// - Round Robin and NRR
-// - Round Robin time quantum is 4 ms
-// - NRR time quantum start 4 ms, decreases by 1ms until 2ms
-// - Name: Binbin Wang
-// - Student No: 3214157
-// - Date: 05-09-2018
+
 import java.util.*;
 public class AlgRR extends SchedulingAlgorithms{
 	private Process currentJob;	
 	private Queue<Process> readyQueue= new LinkedList<Process>();
 	private int decreaseTimeQ;
+
+
 	//Construction
 	public AlgRR(Process[] jobsStack,int DISP,int decreaseTimeQ){
 		super(jobsStack,DISP);
@@ -42,7 +34,7 @@ public class AlgRR extends SchedulingAlgorithms{
 					break;
 				}
 			}
-			//is a job in ready queue
+			
 			if (!readyQueue.isEmpty()){
 				currentJob=readyQueue.poll();//get the job from ready queue
 				int jobID=currentJob.getID();

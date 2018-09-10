@@ -6,12 +6,12 @@
 // - FCFS RR FB NRR
 // - Name: Binbin Wang
 // - Student No: 3214157
-// - Date: 07-09-2018
+// - Date: 03-09-2018
 
 import java.io.*;
 import java.util.*;
 
-public class c3214157A1{
+public class C3214157A1{
 	
 	public static void main(String args []){
 		
@@ -71,7 +71,7 @@ public class c3214157A1{
 			}
 		}
 		catch(Exception e){
-			System.out.println(e);//print loading file error
+			System.out.println(e);//print loading file err 
 		}
 		finally{
 			try{

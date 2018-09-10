@@ -1,16 +1,10 @@
-// - University of Newcastle
-// - School of Electrical Engineering and Computer Science
-// - COMP2240 Operating Systems
-// - Assignment 1
-// - Scheduling Algorithms
-// - First Come First Served
-// - Name: Binbin Wang
-// - Student No: 3214157
-// - Date: 04-09-2018
 import java.util.*;
 public class AlgFCFS extends SchedulingAlgorithms{
 	
+	
 	private Process currentJob;	
+
+
 
 	//Construction
 	public AlgFCFS(Process[] jobsStack,int DISP){

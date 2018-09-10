@@ -1,13 +1,3 @@
-// - University of Newcastle
-// - School of Electrical Engineering and Computer Science
-// - COMP2240 Operating Systems
-// - Assignment 1
-// - Scheduling Algorithms
-// - Process
-// - Name: Binbin Wang
-// - Student No: 3214157
-// - Date: 03-09-2018
-
 public class Process{
 
 	private int pID;
@@ -19,7 +9,7 @@ public class Process{
 	
 	private int turnaroundTime = 0;
 	private int waitingTime = 0;	
-	//Construction
+
 	Process(int processID,int processArriveTime,int processExecSize){
 		this.pID=processID;
 		this.arriveTime=processArriveTime;
